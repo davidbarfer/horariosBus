@@ -4,14 +4,16 @@ import Hero from '@/components/Hero.astro';
 import Schedule from '@/components/Schedule.astro';
 import Layout from '@/layouts/Layout.astro';
 
-import { directo, estCercLV, name } from '@/const/m175';
+import { name, directo, estCercLV, estCercS, estCercDF } from '@/const/m175';
 ---
 
 <Layout>
 	<Hero />
 	<h1>Albaida --> Sevilla</h1>
-	<article class="flex gap-4 justify-center items-start">
+	<article class="flex gap-4 justify-center items-start flex-wrap">
 		<Schedule line={name} schedule={directo} />
 		<Schedule line={name} schedule={estCercLV} />
+		<Schedule line={name} schedule={estCercS} />
+		<Schedule line={name} schedule={estCercDF} />
 	</article>
 </Layout>
