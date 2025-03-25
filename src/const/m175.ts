@@ -59,3 +59,38 @@ export const estCercLV: Schedule = {
     '22:50',
   ],
 }
+
+export const estCercS: Schedule = {
+  type: 'Estación Cercanias',
+  days: 'S',
+  frequencies: [
+    '7:50',
+    '8:50',
+    '9:50',
+    '10:20',
+    '12:20',
+    '13:20',
+    '14:20',
+    '15:20',
+    '17:20',
+    '18:20',
+    '20:20',
+    '22:20',
+  ]
+}
+
+export const estCercDF: Schedule = {
+  type: 'Estación Cercanias',
+  days: 'DF',
+  frequencies: [
+    '7:20',
+    '9:20',
+    '12:20',
+    '14:20',
+    '15:20',
+    '17:20',
+    '18:20',
+    '19:20',
+    '21:20',
+  ],
+}
