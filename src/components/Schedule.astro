@@ -1,0 +1,30 @@
+---
+const { schedule, line } = Astro.props;
+---
+<section class="flex flex-col justify-center items-center">
+  <h2>Horario: { line }</h2>
+  <table class="bg-green-200">
+    <thead>
+      <tr>
+        <th>Hora</th>
+        <th>Días</th>
+        <th>Tipo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {schedule?.frequencies?.map((time:string) => (
+        <tr>
+          <td>{time}</td>
+          <td>{schedule.days}</td>
+          <td>{schedule.type}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</section>
+
+<style>
+  th {
+    padding-inline: 0.5rem;
+  }
+</style>
