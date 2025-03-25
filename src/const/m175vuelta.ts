@@ -65,18 +65,19 @@ export const estCercS: Schedule = {
   type: 'Estación Cercanias',
   days: 'S',
   frequencies: [
-    '07:50',
-    '08:50',
-    '09:50',
-    '10:20',
-    '12:20',
-    '13:20',
-    '14:20',
-    '15:20',
-    '17:20',
-    '18:20',
-    '20:20',
-    '22:20',
+    '08:15',
+    '08:45',
+    '09:15',
+    '09:45',
+    '11:00',
+    '12:00',
+    '13:45',
+    '14:15',
+    '16:00',
+    '17:00',
+    '19:00',
+    '20:00',
+    '22:00',
   ]
 }
 
@@ -84,44 +85,29 @@ export const estCercDF: Schedule = {
   type: 'Estación Cercanias',
   days: 'DF',
   frequencies: [
-    '07:20',
-    '09:20',
-    '12:20',
-    '14:20',
-    '15:20',
-    '17:20',
-    '18:20',
-    '19:20',
-    '21:20',
+    '09:00',
+    '10:00',
+    '12:00',
+    '13:00',
+    '14:00',
+    '16:00',
+    '17:00',
+    '19:00',
+    '21:00',
+    '22:00',
   ],
 }
-
-export const ginesS: Schedule = {
-  type: 'Gines (ida)',
-  days: 'S',
-  frequencies: [
-    '11:20',
-  ],
-};
-
-export const ginesDF: Schedule = {
-  type: 'Gines (ida)',
-  days: 'DF',
-  frequencies: [
-    '11:20',
-  ],
-};
 
 export const sennorioGuzmanS: Schedule = {
   type: 'Señorio Guzman',
   days: 'S',
   frequencies: [
-    '07:20',
-    '08:20',
-    '09:20',
-    '12:50',
-    '16:20',
-    '21:20',
+    '07:45',
+    '10:15',
+    '13:15',
+    '15:00',
+    '21:00',
+    '23:00',
   ],
 };
 
@@ -129,12 +115,12 @@ export const sennorioGuzmanDF: Schedule = {
   type: 'Señorio Guzman',
   days: 'DF',
   frequencies: [
-    '08:20',
-    '10:20',
-    '13:20',
-    '16:20',
-    '20:20',
-    '22:20',
+    '01:00',
+    '08:00',
+    '11:00',
+    '15:00',
+    '21:00',
+    '23:00',
   ],
 };
 
@@ -142,7 +128,9 @@ export const sennorioGuzmanGinesS: Schedule = {
   type: 'Señorio Guzman',
   days: 'S',
   frequencies: [
-    '00:20',
+    '01:00',
+    '03:00',
+    '18:00',
   ],
 };
 
@@ -150,6 +138,7 @@ export const sennorioGuzmanGinesDF: Schedule = {
   type: 'Señorio Guzman',
   days: 'DF',
   frequencies: [
-    '00:20',
+    '03:00',
+    '18:00',
   ],
 };
