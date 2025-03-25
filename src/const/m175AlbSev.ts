@@ -5,7 +5,7 @@ interface Schedule {
 }
 
 export const name = 'M-175';
-// Example usage with your data:
+// Un objeto cuya clave es el día, y el valor es un array con los tipos que ruta disponibles
 export const directo: Schedule = {
   type: 'Directo',
   days: 'LV',
