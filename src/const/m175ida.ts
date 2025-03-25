@@ -94,3 +94,61 @@ export const estCercDF: Schedule = {
     '21:20',
   ],
 }
+
+export const ginesS: Schedule = {
+  type: 'Gines (ida)',
+  days: 'S',
+  frequencies: [
+    '11:20',
+  ],
+};
+
+export const ginesDF: Schedule = {
+  type: 'Gines (ida)',
+  days: 'DF',
+  frequencies: [
+    '11:20',
+  ],
+};
+
+export const sennorioGuzmanS: Schedule = {
+  type: 'Señorio Guzman',
+  days: 'S',
+  frequencies: [
+    '07:20',
+    '08:20',
+    '09:20',
+    '12:50',
+    '16:20',
+    '21:20',
+  ],
+};
+
+export const sennorioGuzmanDF: Schedule = {
+  type: 'Señorio Guzman',
+  days: 'DF',
+  frequencies: [
+    '08:20',
+    '10:20',
+    '13:20',
+    '16:20',
+    '20:20',
+    '22:20',
+  ],
+};
+
+export const sennorioGuzmanGinesS: Schedule = {
+  type: 'Señorio Guzman',
+  days: 'S',
+  frequencies: [
+    '00:20',
+  ],
+};
+
+export const sennorioGuzmanGinesDF: Schedule = {
+  type: 'Señorio Guzman',
+  days: 'DF',
+  frequencies: [
+    '00:20',
+  ],
+};
