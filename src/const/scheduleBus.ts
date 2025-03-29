@@ -15,7 +15,10 @@ sennorioGuzmanGinesDF.frequencies.forEach(f => allFrequencies.push(f));
 
 allFrequencies.sort();
 
+// Actually assign the filtered result back to allFrequencies
+allFrequencies = allFrequencies.filter((value, index, self) => self.indexOf(value) === index);
+
 export const M175_ALB_SEV = {
   name: 'M-175',
   frequencies: allFrequencies,
-} 
+};
