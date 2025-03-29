@@ -142,3 +142,28 @@ export const sennorioGuzmanGinesDF: Schedule = {
     '18:00',
   ],
 };
+
+let allFrequencies: string[] = [];
+
+directo.frequencies.forEach(f => allFrequencies.push(f));
+estCercLV.frequencies.forEach(f => allFrequencies.push(f));
+estCercS.frequencies.forEach(f => allFrequencies.push(f));
+estCercDF.frequencies.forEach(f => allFrequencies.push(f));
+sennorioGuzmanS.frequencies.forEach(f => allFrequencies.push(f));
+sennorioGuzmanDF.frequencies.forEach(f => allFrequencies.push(f));
+sennorioGuzmanGinesS.frequencies.forEach(f => allFrequencies.push(f));
+sennorioGuzmanGinesDF.frequencies.forEach(f => allFrequencies.push(f)); 
+
+allFrequencies.sort();
+
+// Actually assign the filtered result back to allFrequencies
+allFrequencies = allFrequencies.filter((value, index, self) => self.indexOf(value) === index);
+
+export const M175_SEV_ALB = {
+  name: 'M-175',
+  frequencies: allFrequencies,
+  LV: [ directo, estCercLV],
+  S: [ estCercS, sennorioGuzmanS, sennorioGuzmanGinesS],
+  DF: [ estCercDF, sennorioGuzmanDF, sennorioGuzmanGinesDF],
+  types: ['Directo', 'Estación Cercanias', 'Gines (ida)', 'Señorio Guzman'],
+};

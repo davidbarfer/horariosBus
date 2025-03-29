@@ -1,0 +1,124 @@
+<section>
+  <canvas id="scheduleSEVALB"></canvas>
+</section>
+
+<script>
+  import { M175_SEV_ALB } from "@/const/m175SevAlb";
+  const WIDTH_SCHEDULE = 1440;
+  const HEIGHT_SCHEDULE = 256;
+  const X_OFSSET = 120;
+  const Y_OFSSET = 50;
+  const BOARD_TIME =
+    (WIDTH_SCHEDULE - X_OFSSET) / M175_SEV_ALB.frequencies.length;
+  const BOARD_DAYS = HEIGHT_SCHEDULE / 3;
+
+  const canvas = document.getElementById("scheduleSEVALB");
+  const ctx = canvas?.getContext("2d");
+  if (canvas && ctx) {
+    canvas.width = WIDTH_SCHEDULE;
+    canvas.height = HEIGHT_SCHEDULE;
+
+    function drawBoardAxis() {
+      ctx?.beginPath();
+      ctx?.moveTo(X_OFSSET, HEIGHT_SCHEDULE - Y_OFSSET / 2);
+      ctx?.lineTo(WIDTH_SCHEDULE, HEIGHT_SCHEDULE - Y_OFSSET / 2);
+      ctx?.closePath();
+      ctx?.stroke();
+
+      ctx?.beginPath();
+      ctx?.moveTo(X_OFSSET, 0);
+      ctx?.lineTo(X_OFSSET, HEIGHT_SCHEDULE - Y_OFSSET / 2);
+      ctx?.closePath();
+      ctx?.stroke();
+    }
+
+    function drawBoardDays() {
+      ctx.fillStyle = "#000";
+      ctx?.fillText("Lunes a Viernes", 0, BOARD_DAYS - Y_OFSSET);
+      ctx?.fillText("Sabados", 0, BOARD_DAYS * 2 - Y_OFSSET);
+      ctx?.fillText("Domingos y Festivos", 0, BOARD_DAYS * 3 - Y_OFSSET);
+    }
+
+    function drawBoardTime(hour: number) {
+      ctx.fillStyle = "#000";
+      if (hour % 2 == 0) {
+        ctx?.fillText(
+          M175_SEV_ALB.frequencies[hour],
+          hour * BOARD_TIME + X_OFSSET,
+          HEIGHT_SCHEDULE
+        );
+      } else {
+        ctx?.fillText(
+          M175_SEV_ALB.frequencies[hour],
+          hour * BOARD_TIME + X_OFSSET,
+          HEIGHT_SCHEDULE - 12
+        );
+      }
+    }
+
+    function drawBoardElement(
+      element: any,
+      day: number,
+      hour: number,
+      type: string = element.type
+    ) {
+      if (element.frequencies.includes(M175_SEV_ALB.frequencies[hour])) {
+        // Set common properties once
+        ctx?.beginPath();
+        ctx?.arc(
+          hour * BOARD_TIME + X_OFSSET,
+          day * BOARD_DAYS + Y_OFSSET,
+          5,
+          0,
+          2 * Math.PI
+        );
+
+        // Set different colors based on type
+        switch (type) {
+          case "Directo":
+            ctx.fillStyle = "#FF0000"; // Red
+            ctx.strokeStyle = "#000000"; // Black
+            break;
+          case "Estación Cercanias":
+            ctx.fillStyle = "#0000FF"; // Blue
+            ctx.strokeStyle = "#000000"; // Black
+            break;
+          case "Gines (ida)":
+            ctx.fillStyle = "#00FF00"; // Green
+            ctx.strokeStyle = "#000000"; // Black
+            break;
+          case "Señorio Guzman":
+            ctx.fillStyle = "#FFFF00"; // Yellow
+            ctx.strokeStyle = "#000000"; // Black
+            break;
+          default:
+            ctx.fillStyle = "#AAAAAA"; // Gray for unknown types
+            ctx.strokeStyle = "#000000"; // Black
+        }
+
+        // Draw the element
+        ctx?.fill();
+        ctx?.stroke();
+      }
+    }
+
+    function drawBoard() {
+      drawBoardAxis();
+      for (let i = 0; i < M175_SEV_ALB.frequencies.length; i++) {
+        drawBoardTime(i);
+      }
+      drawBoardDays();
+    }
+
+    M175_SEV_ALB.frequencies.forEach((f, i) =>
+      M175_SEV_ALB.LV.forEach((e) => drawBoardElement(e, 0, i))
+    );
+    M175_SEV_ALB.frequencies.forEach((f, i) =>
+      M175_SEV_ALB.S.forEach((e) => drawBoardElement(e, 1, i))
+    );
+    M175_SEV_ALB.frequencies.forEach((f, i) =>
+      M175_SEV_ALB.DF.forEach((e) => drawBoardElement(e, 2, i))
+    );
+    drawBoard();
+  }
+</script>
