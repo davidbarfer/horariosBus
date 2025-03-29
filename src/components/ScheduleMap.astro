@@ -24,14 +24,14 @@ if (canvas && ctx) {
 
   function drawBoardAxis() {
     ctx?.beginPath();
-    ctx?.moveTo(X_OFSSET, HEIGHT_SCHEDULE);
-    ctx?.lineTo(WIDTH_SCHEDULE, HEIGHT_SCHEDULE);
+    ctx?.moveTo(X_OFSSET, HEIGHT_SCHEDULE - Y_OFSSET/2);
+    ctx?.lineTo(WIDTH_SCHEDULE, HEIGHT_SCHEDULE - Y_OFSSET/2);
     ctx?.closePath();
     ctx?.stroke();
 
     ctx?.beginPath();
     ctx?.moveTo(X_OFSSET, 0);
-    ctx?.lineTo(X_OFSSET, HEIGHT_SCHEDULE);
+    ctx?.lineTo(X_OFSSET, HEIGHT_SCHEDULE - Y_OFSSET/2);
     ctx?.closePath();
     ctx?.stroke();
   }
@@ -39,9 +39,14 @@ if (canvas && ctx) {
   function drawBoardTime(hour : number) {
     ctx?.beginPath();
     ctx?.moveTo(hour * BOARD_TIME + X_OFSSET, 0);
-    ctx?.lineTo(hour * BOARD_TIME + X_OFSSET, HEIGHT_SCHEDULE);
+    ctx?.lineTo(hour * BOARD_TIME + X_OFSSET, HEIGHT_SCHEDULE - Y_OFSSET/2);
     ctx?.closePath();
     ctx?.stroke();
+    if (hour % 2 == 0) {
+    ctx?.fillText(M175_ALB_SEV.frequencies[hour], hour * BOARD_TIME + X_OFSSET, HEIGHT_SCHEDULE);
+    } else {
+    ctx?.fillText(M175_ALB_SEV.frequencies[hour], hour * BOARD_TIME + X_OFSSET, HEIGHT_SCHEDULE - 12);
+    }
   }
 
   function drawBoardDays() {
