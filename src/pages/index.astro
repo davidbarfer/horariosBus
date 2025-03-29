@@ -1,16 +1,17 @@
 ---
-import '@/styles/global.css';
 import Hero from '@/components/Hero.astro';
 import Layout from '@/layouts/Layout.astro';
-import M175ALBSEV from '@/components/M175ALBSEV.astro';
 import M175SEVALB from '@/components/M175SEVALB.astro';
+import Schedule175ALBSEV from '@/components/Schedule175ALBSEV.astro';
+import Schedule from '@/components/Schedule.astro';
+import Schedule175SEVALB from '@/components/Schedule175SEVALB.astro';
 
 ---
 
 <Layout>
 	<Hero />
 	<h1 class="text-2xl uppercase underline">Albaida --> Sevilla</h1>
-	<M175ALBSEV />
+	<Schedule175ALBSEV />
 	<h1 class="text-2xl uppercase underline">Sevilla --> Albaida</h1>
-	<M175SEVALB />
+	<Schedule175SEVALB />
 </Layout>
