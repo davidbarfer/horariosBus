@@ -35,13 +35,14 @@ if (canvas && ctx) {
     ctx?.closePath();
     ctx?.stroke();
   }
+  
+  function drawBoardDays() {
+    ctx?.fillText('Lunes a Viernes', 0, BOARD_DAYS - Y_OFSSET);
+    ctx?.fillText('Sabados', 0, BOARD_DAYS * 2 - Y_OFSSET);
+    ctx?.fillText('Domingos y Festivos', 0,BOARD_DAYS * 3 - Y_OFSSET);
+  }
 
   function drawBoardTime(hour : number) {
-    ctx?.beginPath();
-    ctx?.moveTo(hour * BOARD_TIME + X_OFSSET, 0);
-    ctx?.lineTo(hour * BOARD_TIME + X_OFSSET, HEIGHT_SCHEDULE - Y_OFSSET/2);
-    ctx?.closePath();
-    ctx?.stroke();
     if (hour % 2 == 0) {
     ctx?.fillText(M175_ALB_SEV.frequencies[hour], hour * BOARD_TIME + X_OFSSET, HEIGHT_SCHEDULE);
     } else {
@@ -49,10 +50,13 @@ if (canvas && ctx) {
     }
   }
 
-  function drawBoardDays() {
-    ctx?.fillText('Lunes a Viernes', 0, BOARD_DAYS - Y_OFSSET);
-    ctx?.fillText('Sabados', 0, BOARD_DAYS * 2 - Y_OFSSET);
-    ctx?.fillText('Domingos y Festivos', 0,BOARD_DAYS * 3 - Y_OFSSET);
+  function drawBoardElement(element : any, day : number, hour : number) {
+    if (element.frequencies.includes(M175_ALB_SEV.frequencies[hour])) {
+      ctx?.beginPath();
+      ctx?.arc(hour * BOARD_TIME + X_OFSSET, day * BOARD_DAYS + Y_OFSSET, 5, 0, 2 * Math.PI);
+      ctx?.fill();
+      ctx?.stroke();
+    }
   }
 
   function drawBoard() {
@@ -62,6 +66,8 @@ if (canvas && ctx) {
     }
     drawBoardDays();
   }
+
+  directo.frequencies.forEach((f, i) => drawBoardElement(directo, 0, i));
   drawBoard();
 }
 </script>
