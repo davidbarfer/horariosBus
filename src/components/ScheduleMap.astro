@@ -7,7 +7,8 @@ const { element, name } = Astro.props;
 
 <script>
   import { M175_ALB_SEV } from "@/const/scheduleBus";
-  const WIDTH_SCHEDULE = 1024;
+  import { directo } from "@/const/m175AlbSev";
+  const WIDTH_SCHEDULE = 1280;
   const HEIGHT_SCHEDULE = 256;
   const BOARD_PARTS = WIDTH_SCHEDULE / M175_ALB_SEV.frequencies.length;
 
