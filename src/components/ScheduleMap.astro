@@ -10,7 +10,10 @@ const { element, name } = Astro.props;
   import { directo } from "@/const/m175AlbSev";
   const WIDTH_SCHEDULE = 1280;
   const HEIGHT_SCHEDULE = 256;
-  const BOARD_PARTS = WIDTH_SCHEDULE / M175_ALB_SEV.frequencies.length;
+  const X_OFSSET = 120;
+  const Y_OFSSET = 50;
+  const BOARD_TIME = (WIDTH_SCHEDULE - X_OFSSET) / M175_ALB_SEV.frequencies.length;
+  const BOARD_DAYS = (HEIGHT_SCHEDULE / 3);
 
   const canvas = document.querySelector('canvas');
   const ctx = canvas?.getContext('2d');
@@ -19,35 +22,42 @@ if (canvas && ctx) {
   canvas.width  = WIDTH_SCHEDULE;
   canvas.height = HEIGHT_SCHEDULE;
 
-  function drawBoard() {
+  function drawBoardAxis() {
     ctx?.beginPath();
-    ctx?.moveTo(0, HEIGHT_SCHEDULE);
+    ctx?.moveTo(X_OFSSET, HEIGHT_SCHEDULE);
     ctx?.lineTo(WIDTH_SCHEDULE, HEIGHT_SCHEDULE);
     ctx?.closePath();
     ctx?.stroke();
 
     ctx?.beginPath();
-    ctx?.moveTo(0, 0);
-    ctx?.lineTo(0, HEIGHT_SCHEDULE);
+    ctx?.moveTo(X_OFSSET, 0);
+    ctx?.lineTo(X_OFSSET, HEIGHT_SCHEDULE);
     ctx?.closePath();
     ctx?.stroke();
   }
 
-  function drawBoardPart(part) {
+  function drawBoardTime(hour : number) {
     ctx?.beginPath();
-    ctx?.moveTo(part * BOARD_PARTS, 0);
-    ctx?.lineTo(part * BOARD_PARTS, HEIGHT_SCHEDULE);
+    ctx?.moveTo(hour * BOARD_TIME + X_OFSSET, 0);
+    ctx?.lineTo(hour * BOARD_TIME + X_OFSSET, HEIGHT_SCHEDULE);
     ctx?.closePath();
     ctx?.stroke();
   }
 
-  function drawBoardParts() {
+  function drawBoardDays() {
+    ctx?.fillText('Lunes a Viernes', 0, BOARD_DAYS - Y_OFSSET);
+    ctx?.fillText('Sabados', 0, BOARD_DAYS * 2 - Y_OFSSET);
+    ctx?.fillText('Domingos y Festivos', 0,BOARD_DAYS * 3 - Y_OFSSET);
+  }
+
+  function drawBoard() {
+    drawBoardAxis();
     for (let i = 0; i < M175_ALB_SEV.frequencies.length; i++) {
-      drawBoardPart(i);
+      drawBoardTime(i);
     }
+    drawBoardDays();
   }
   drawBoard();
-  drawBoardParts();
 }
 </script>
 
