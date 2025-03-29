@@ -21,4 +21,8 @@ allFrequencies = allFrequencies.filter((value, index, self) => self.indexOf(valu
 export const M175_ALB_SEV = {
   name: 'M-175',
   frequencies: allFrequencies,
+  LV: [ directo, estCercLV],
+  S: [ estCercS, ginesS, sennorioGuzmanS, sennorioGuzmanGinesS],
+  DF: [ estCercDF, ginesDF, sennorioGuzmanDF, sennorioGuzmanGinesDF],
+  types: ['Directo', 'Estación Cercanias', 'Gines (ida)', 'Señorio Guzman'],
 };

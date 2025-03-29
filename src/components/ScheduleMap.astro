@@ -50,12 +50,32 @@ if (canvas && ctx) {
     }
   }
 
-  function drawBoardElement(element : any, day : number, hour : number) {
+  function drawBoardElement(element : any, day : number, hour : number, type : string = element.type) {
     if (element.frequencies.includes(M175_ALB_SEV.frequencies[hour])) {
-      ctx?.beginPath();
-      ctx?.arc(hour * BOARD_TIME + X_OFSSET, day * BOARD_DAYS + Y_OFSSET, 5, 0, 2 * Math.PI);
-      ctx?.fill();
-      ctx?.stroke();
+      if (type == 'Directo') {
+        ctx?.beginPath();
+        ctx?.arc(hour * BOARD_TIME + X_OFSSET, day * BOARD_DAYS + Y_OFSSET, 5, 0, 2 * Math.PI);
+        ctx?.fill();
+        ctx?.stroke();
+      }
+      if (type == 'Estación Cercanias') {
+        ctx?.beginPath();
+        ctx?.arc(hour * BOARD_TIME + X_OFSSET, day * BOARD_DAYS + Y_OFSSET, 3, 0, 2 * Math.PI);
+        ctx?.fill();
+        ctx?.stroke();
+      }
+      if (type == 'Gines (ida)') {
+        ctx?.beginPath();
+        ctx?.arc(hour * BOARD_TIME + X_OFSSET, day * BOARD_DAYS + Y_OFSSET, 2, 0, 2 * Math.PI);
+        ctx?.fill();
+        ctx?.stroke();
+      }
+      if (type == 'Señorio Guzman') {
+        ctx?.beginPath();
+        ctx?.arc(hour * BOARD_TIME + X_OFSSET, day * BOARD_DAYS + Y_OFSSET, 1, 0, 2 * Math.PI);
+        ctx?.fill();
+        ctx?.stroke();
+      }
     }
   }
 
@@ -67,7 +87,9 @@ if (canvas && ctx) {
     drawBoardDays();
   }
   
-  M175_ALB_SEV.frequencies.forEach((f, i) => drawBoardElement(directo, 0, i));
+  M175_ALB_SEV.frequencies.forEach((f, i) => M175_ALB_SEV.LV.forEach((e) => drawBoardElement(e, 0, i)));
+  M175_ALB_SEV.frequencies.forEach((f, i) => M175_ALB_SEV.S.forEach((e) => drawBoardElement(e, 1, i)));
+  M175_ALB_SEV.frequencies.forEach((f, i) => M175_ALB_SEV.DF.forEach((e) => drawBoardElement(e, 2, i)));
   drawBoard();
 }
 </script>
