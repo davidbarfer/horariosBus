@@ -1,0 +1,52 @@
+---
+const { element, name } = Astro.props;
+---
+<section>
+  <canvas id="schedule"></canvas>
+</section>
+
+<script>
+  import { M175_ALB_SEV } from "@/const/scheduleBus";
+  const WIDTH_SCHEDULE = 1024;
+  const HEIGHT_SCHEDULE = 256;
+  const BOARD_PARTS = WIDTH_SCHEDULE / M175_ALB_SEV.frequencies.length;
+
+  const canvas = document.querySelector('canvas');
+  const ctx = canvas?.getContext('2d');
+if (canvas && ctx) {
+
+  canvas.width  = WIDTH_SCHEDULE;
+  canvas.height = HEIGHT_SCHEDULE;
+
+  function drawBoard() {
+    ctx?.beginPath();
+    ctx?.moveTo(0, HEIGHT_SCHEDULE);
+    ctx?.lineTo(WIDTH_SCHEDULE, HEIGHT_SCHEDULE);
+    ctx?.closePath();
+    ctx?.stroke();
+
+    ctx?.beginPath();
+    ctx?.moveTo(0, 0);
+    ctx?.lineTo(0, HEIGHT_SCHEDULE);
+    ctx?.closePath();
+    ctx?.stroke();
+  }
+
+  function drawBoardPart(part) {
+    ctx?.beginPath();
+    ctx?.moveTo(part * BOARD_PARTS, 0);
+    ctx?.lineTo(part * BOARD_PARTS, HEIGHT_SCHEDULE);
+    ctx?.closePath();
+    ctx?.stroke();
+  }
+
+  function drawBoardParts() {
+    for (let i = 0; i < M175_ALB_SEV.frequencies.length; i++) {
+      drawBoardPart(i);
+    }
+  }
+  drawBoard();
+  drawBoardParts();
+}
+</script>
+

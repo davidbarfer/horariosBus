@@ -1,16 +1,8 @@
 ---
 import Schedule from './Schedule.astro';
 import { name, directo, estCercLV, estCercS, estCercDF, ginesS, ginesDF, sennorioGuzmanS, sennorioGuzmanDF, sennorioGuzmanGinesS, sennorioGuzmanGinesDF } from '../const/m175AlbSev.ts';
+import ScheduleMap from './ScheduleMap.astro';
 ---
 <article class="flex gap-4 justify-center items-start flex-wrap py-4">
-  <Schedule line={name} schedule={directo} />
-  <Schedule line={name} schedule={estCercLV} />
-  <Schedule line={name} schedule={estCercS} />
-  <Schedule line={name} schedule={estCercDF} />
-  <Schedule line={name} schedule={ginesS} />
-  <Schedule line={name} schedule={ginesDF} />
-  <Schedule line={name} schedule={sennorioGuzmanS} />
-  <Schedule line={name} schedule={sennorioGuzmanDF} />
-  <Schedule line={name} schedule={sennorioGuzmanGinesS} />
-  <Schedule line={name} schedule={sennorioGuzmanGinesDF} />
+ <ScheduleMap name={name} element={directo} />
 </article>
