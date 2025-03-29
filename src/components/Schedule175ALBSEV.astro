@@ -1,5 +1,5 @@
 <section>
-  <canvas id="schedule"></canvas>
+  <canvas id="scheduleALBSEV"></canvas>
 </section>
 
 <script>
@@ -12,7 +12,7 @@
     (WIDTH_SCHEDULE - X_OFSSET) / M175_ALB_SEV.frequencies.length;
   const BOARD_DAYS = HEIGHT_SCHEDULE / 3;
 
-  const canvas = document.querySelector("canvas");
+  const canvas = document.getElementById("scheduleALBSEV");
   const ctx = canvas?.getContext("2d");
   if (canvas && ctx) {
     canvas.width = WIDTH_SCHEDULE;
